@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="/Digital-Cowboy/assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 
-<div class="Header">
-    <header>
-        <h1>Weather Dashboard</h1>
-    </header>
-
-</div>
 <body>
-    <div class="Search">
-        <h2>Search for a City</h2>
-        <input type="text" id="citiesSearch" placeholder="Adelaide">
-        <button class="searchBtn">Search</button>
-    </div>
-    
-    <div class="today">
-        temp
-        wind
-        humidity
-    </div>
+<header class="py-3 mb-3 border-bottom">
+    <span class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none justify-content-center">
+        <h1 class="fs-4">Weather Dashboard</h1>
+    </span>
+</header>
 
-    <div class="forecast">
-        <div id="day1">
+    <div class="container-fluid pb-3">
+        <div class="d-grid gap-3 mx-auto" style="grid-template-columns: 1fr 2fr ">
+            <div class="bg-light rounded-3 mw-100">
+                <h2 class="fs-4 "> Search for a City:</h2>
+                <input id="cityName" placeholder="Adelaide">
+                <button type="button" id="searchButton" class="btn btn-primary">Search</button>
+                <hr>
+                <button type="button" class="btn btn-primary">Sydney</button>
+                <button type="button" class="btn btn-primary">Brisbane</button>
+                <button type="button" class="btn btn-primary">Perth</button>
+            </div>
+
+            <div class="bg-light border rounded-3">
+                <div class="todayWeather">
+                </div>
+
+                <div class="temp">temp</div>
+
+                <div class="wind">wind</div>
+
+                <div class="Humidity">Humidity</div>
+
+                <br><br><br><br><br><br><br><br><br><br>     
+
+                <div id="5dayForecast">5 Day forecast</div>
+
+                <br><br><br><br><br><br><br><br><br><br>  
+            </div>
+
+
         </div>
-
-        <div id="day2">
-        </div>
-
-        <div id="day3">
-        </div>
-
-        <div id="day4">
-        </div>
-
-        <div id="day5">
-        </div>
-        
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="/Digital-Cowboy/assets/js/script.js"></script>
-
-
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+</script>
+<script src="/assets/js/script.js"></script>
+
 
 </html>
