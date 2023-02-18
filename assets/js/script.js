@@ -23,7 +23,7 @@ function fetchCoordinates(cityName, APIKey) {
         if (data.coord) {
           return {
             longitude: data.coord.lon,
-            latitude: data.coord.lat
+            latitude: data.coord.lat,
             temperature: data.main.temp,
             windSpeed: data.wind.speed,
             humidity: data.main.humidity
