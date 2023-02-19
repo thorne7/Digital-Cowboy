@@ -1,89 +1,95 @@
 var APIKey = "2a4d7eab71efe7b9e662e796cee38e75";
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
 var cityName = document.getElementById("cityName").value;
 var searchButton = document.getElementById("searchButton");
+var city = cityName
 
-var lon = []
-var lat = []
+var todayWeather = document.getElementById("todayWeather")
+var TempEl = document.getElementById("Temperature")
+var WindEl = document.getElementById("Wind")
+var HumidityEl = document.getElementById("Humidity")
 
 
+function fetchWeatherData(cityName, APIKey) {
+  const APIUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${APIKey}`;
+  return fetch(APIUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`API request failed with status code: ${response.status}`);
+      }
+    })
+    .then(data => {
+      if (data) {
+        return {
+          longitude: data.coord.lon,
+          latitude: data.coord.lat,
+          temperature: data.main.temp,
+          windSpeed: data.wind.speed,
+          humidity: data.main.humidity,
+          // iconUrl: iconUrl
+        };
+      } else {
+        throw new Error('Weather Data not found in the API response');
+      }
 
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
-function fetchCoordinates(cityName, APIKey) {
-    const APIUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
-    return fetch(APIUrl)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(`API request failed with status code: ${response.status}`);
-        }
-      })
-      .then(data => {
-        if (data.coord) {
-          return {
-            longitude: data.coord.lon,
-            latitude: data.coord.lat,
-            temperature: data.main.temp,
-            windSpeed: data.wind.speed,
-            humidity: data.main.humidity
-          };
-        } else {
-          throw new Error('Coordinates not found in the API response');
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-  
-  searchButton.onclick = function() {
+}
+
+searchButton.onclick = async function () {
+  try {
     const cityName = document.getElementById('cityName').value;
     const APIKey = "2a4d7eab71efe7b9e662e796cee38e75";
-  
-    fetchCoordinates(cityName, APIKey)
-      .then(coordinates => {
-        console.log(coordinates);
-      });
-  };
+    var weatherData = await fetchWeatherData(cityName, APIKey);
+
+    TempEl.innerHTML = `Temperature: ${weatherData.temperature} °C`;
+    WindEl.innerHTML = `Wind speed: ${weatherData.windSpeed} m/s`;
+    HumidityEl.innerHTML = `Humidity: ${weatherData.humidity} %`;
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+function fetchForcast() {
+  const forecastResponse = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
+  return fetch(forecastResponse)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Forcast Response request failed with status code: ${response.status}`);
+      }
+    })
+  then(data => {
+      if (data) {
+        return {
+          longitude: data.coord.lon,
+          latitude: data.coord.lat,
+          temperature: data.main.temp,
+          windSpeed: data.wind.speed,
+          humidity: data.main.humidity,
+          iconUrl: iconUrl
+        };
+      } else {
+        throw new Error('Weather forcast Data not found in the API response');
+      }
+    })
+    .catch(erroe => {
+      console.error(error);
+    });
+
+}
 
 
 
 
 
 
-
-// $("#searchBtn").click (function () {
-//         console.log("click");
-
-
-//         var searchCity = $("citiesSearch").val();
-//         console.log(searchCity);
-//         if (searchCity === "") {
-//             return;
-//         }})
-
-
-
-
-// function getCitiesCoordinates(lon, lat) {
-
-// }
-
-
-
-// fetch(queryURL)
-// .then(function (response) {
-
-//     return response.json()
-
-// })
-
-// .then(function (data) {
-//     console.table(JSON.stringify(data));
-
-// })
-// )
 
 
 
