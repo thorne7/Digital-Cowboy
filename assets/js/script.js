@@ -1,7 +1,11 @@
-var APIKey = "2a4d7eab71efe7b9e662e796cee38e75";
-var cityName = document.getElementById("cityName").value;
+const APIKey = "2a4d7eab71efe7b9e662e796cee38e75";
+
 var searchButton = document.getElementById("searchButton");
+
+var cityName = document.getElementById("cityName").value;
 var city = cityName
+
+
 
 var todayWeather = document.getElementById("todayWeather")
 var TempEl = document.getElementById("Temperature")
@@ -45,7 +49,10 @@ searchButton.onclick = async function () {
     const cityName = document.getElementById('cityName').value;
     const APIKey = "2a4d7eab71efe7b9e662e796cee38e75";
     var weatherData = await fetchWeatherData(cityName, APIKey);
-
+    var todayDate = document.getElementById("dateTime");
+    // Update / Display the time & weather data 
+    
+    todayDate.innerHTML = dayjs().format("DD/MM/YYYYY HH:mm:ss");
     TempEl.innerHTML = `Temperature: ${weatherData.temperature} °C`;
     WindEl.innerHTML = `Wind speed: ${weatherData.windSpeed} m/s`;
     HumidityEl.innerHTML = `Humidity: ${weatherData.humidity} %`;
@@ -53,6 +60,7 @@ searchButton.onclick = async function () {
   } catch (error) {
     console.error(error);
   }
+  console.log(todayDate);
 };
 
 function fetchForcast() {
